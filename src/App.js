@@ -6,7 +6,32 @@ import theme from './theme';
 import Controls from './components/Controls';
 import Display from './components/Display';
 
+function useStickyState(defaultValue, key) {
+  const [value, setValue] = React.useState(() => {
+    const stickyValue = window.localStorage.getItem(key);
+    return stickyValue !== null
+      ? JSON.parse(stickyValue)
+      : defaultValue;
+  });
+  React.useEffect(() => {
+    window.localStorage.setItem(key, JSON.stringify(value));
+  }, [key, value]);
+  return [value, setValue];
+}
+
 function App() {
+
+  const [xAxis, setXAxis] = useStickyState("X-Axis", "xaxis");
+  const [yAxis, setYAxis] = useStickyState("Y-Axis", "yaxis");
+
+  const getXAxisValue = (event) => {
+    setXAxis(event.target.value)
+  }
+
+  const getYAxisValue = (event) => {
+    setYAxis(event.target.value)
+  }
+
   return (
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl" >
@@ -14,10 +39,16 @@ function App() {
           <Heading as="h1">2x2 Matrix</Heading>
           <Grid templateColumns="repeat(5, 1fr)" gap={4}>
             <GridItem colSpan={2} p="5">
-              <Controls />
+              <Controls
+                getX={getXAxisValue}
+                getY={getYAxisValue}
+              />
             </GridItem>
             <GridItem colSpan={3} p="5">
-              <Display />
+              <Display
+                XAxisValue={xAxis}
+                YAxisValue={yAxis}
+              />
             </GridItem>
           </Grid>
         </Box>
