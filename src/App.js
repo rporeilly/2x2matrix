@@ -7,7 +7,7 @@ import Controls from './components/Controls';
 import Display from './components/Display';
 
 function useStickyState(defaultValue, key) {
-  const [value, setValue] = React.useState(() => {
+  const [value, setValue] = useState(() => {
     const stickyValue = window.localStorage.getItem(key);
     return stickyValue !== null
       ? JSON.parse(stickyValue)
@@ -21,8 +21,10 @@ function useStickyState(defaultValue, key) {
 
 function App() {
 
-  const [xAxis, setXAxis] = useStickyState("X-Axis", "xaxis");
-  const [yAxis, setYAxis] = useStickyState("Y-Axis", "yaxis");
+
+  const [xAxis, setXAxis] = useStickyState("", "xaxis");
+  const [yAxis, setYAxis] = useStickyState("", "yaxis");
+  const [matrixTitle, setMatrixTitle] = useStickyState("", "title");
 
   const getXAxisValue = (event) => {
     setXAxis(event.target.value)
@@ -32,16 +34,32 @@ function App() {
     setYAxis(event.target.value)
   }
 
+  const setTitle = (event) => {
+    setMatrixTitle(event.target.value)
+  }
+
+  const clearState = () => {
+    setXAxis("")
+    setYAxis("")
+    setMatrixTitle("")
+  }
+
+
   return (
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl" >
         <Box boxShadow="md" p="6" bg="white" rounded="md" minH="90vh" maxW="92%" m="5vh auto 0" className="wrapper">
-          <Heading as="h1">2x2 Matrix</Heading>
+          <Heading as="h1">{matrixTitle ? matrixTitle : "Title"}</Heading>
           <Grid templateColumns="repeat(5, 1fr)" gap={4}>
             <GridItem colSpan={2} p="5">
               <Controls
                 getX={getXAxisValue}
                 getY={getYAxisValue}
+                clearState={clearState}
+                setTitle={setTitle}
+                matrixTitle={matrixTitle}
+                yAxis={yAxis}
+                xAxis={xAxis}
               />
             </GridItem>
             <GridItem colSpan={3} p="5">
