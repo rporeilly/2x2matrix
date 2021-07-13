@@ -7,7 +7,7 @@ function Display(props) {
   return (
     <Box position="relative">
       <Box transform="rotate(-90deg)" position="absolute" bottom="55px">
-        <Text position="fixed" top="-30px"  align="center" >{props.YAxisValue}
+        <Text position="fixed" top="-30px" w="250px" align="left" >{props.YAxisValue}
           <ArrowForwardIcon position="absolute" top="5px" ml="10px"/>
         </Text>
       </Box>

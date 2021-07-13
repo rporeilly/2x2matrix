@@ -16,17 +16,20 @@ function Controls(props) {
           <TabPanel>
             <Stack spacing={5}>
               <Text align="left">Enter setup configurations below.</Text>
-              <Input onChange={props.setTitle} value={props.matrixTitle} placeholder="Title" />
-              <Input  onChange={props.getX} value={props.xAxis} placeholder="X-axis" />
-              <Input onChange={props.getY} value={props.yAxis} placeholder="Y-axis" />
+              <Input variant="flushed" onChange={props.setTitle} value={props.matrixTitle} placeholder="Title" />
+              <Input variant="flushed" onChange={props.getX} value={props.xAxis} placeholder="X-axis" />
+              <Input variant="flushed" onChange={props.getY} value={props.yAxis} placeholder="Y-axis" />
             </Stack>
+            <Button mt="20px" onClick={props.clearState}>Reset</Button>
           </TabPanel>
           <TabPanel>
-            <Options />
+            <Options
+              xAxis={props.xAxis}
+              yAxis={props.yAxis}
+            />
           </TabPanel>
         </TabPanels>
       </Tabs>
-      <Button onClick={props.clearState}>Reset</Button>
     </Box>
 
   );

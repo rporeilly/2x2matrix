@@ -38,6 +38,8 @@ function App() {
     setMatrixTitle(event.target.value)
   }
 
+  const [effort, setEffort] = useStickyState("", "effort");
+
   const clearState = () => {
     setXAxis("")
     setYAxis("")
@@ -60,6 +62,8 @@ function App() {
                 matrixTitle={matrixTitle}
                 yAxis={yAxis}
                 xAxis={xAxis}
+                effort={effort}
+                setEffort={setEffort}
               />
             </GridItem>
             <GridItem colSpan={3} p="5">
