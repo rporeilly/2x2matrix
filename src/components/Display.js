@@ -1,5 +1,5 @@
 import {
-  Box, Flex, Center, SimpleGrid, Text, Heading, VStack, Input
+  Box, Center, SimpleGrid, Text
 } from '@chakra-ui/react';
 import {ArrowForwardIcon} from '@chakra-ui/icons'
 
@@ -7,7 +7,7 @@ function Display(props) {
   return (
     <Box position="relative">
       <Box transform="rotate(-90deg)" position="absolute" bottom="55px">
-        <Text position="fixed" top="-30px" w="250px" align="left" >{props.YAxisValue}
+        <Text fontSize="1.25rem" position="fixed" top="-30px" w="250px" align="left" >{props.YAxisValue}
           <ArrowForwardIcon position="absolute" top="5px" ml="10px"/>
         </Text>
       </Box>
@@ -48,7 +48,7 @@ function Display(props) {
           </Box>
         </SimpleGrid>
       </Box>
-      <Text align="left" ml="20px">{props.XAxisValue}
+      <Text fontSize="1.25rem" align="left" ml="20px">{props.XAxisValue}
         <ArrowForwardIcon ml="10px"/>
       </Text>
     </Box>
