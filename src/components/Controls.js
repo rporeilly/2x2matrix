@@ -25,7 +25,8 @@ function Controls(props) {
           <TabPanel>
             <Options
               setEffort={props.setEffort}
-              addOptions={props.addOptionsClick}
+              effort={props.effort}
+              addOptions={props.addOptions}
               optionName={props.optionName}
               setOptionName={props.setOptionName}
               xAxis={props.xAxis}
