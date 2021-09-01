@@ -2,7 +2,7 @@ import {
   Button, HStack, Flex, Heading, Radio, RadioGroup, Stack, Input
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import { useSelector, useDispatch} from 'react-redux'
+import { useDispatch} from 'react-redux'
 
 function Options(props) {
 
@@ -10,7 +10,7 @@ function Options(props) {
   const [optionEffort1Value, setOptionEffort1Value] = useState()
   const [optionEffort2Value, setOptionEffort2Value] = useState()
 
-  const options = useSelector(state => state)
+  // const options = useSelector(state => state)
   const dispatch = useDispatch()
 
   const optionName = (event) => {

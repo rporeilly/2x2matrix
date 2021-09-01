@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react';
 import theme from './theme';
 import Controls from './components/Controls';
 import Display from './components/Display';
-import { useSelector, useDispatch } from "react-redux"
 
 function useStickyState(defaultValue, key) {
   const [value, setValue] = useState(() => {

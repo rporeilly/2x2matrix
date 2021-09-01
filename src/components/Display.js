@@ -5,16 +5,22 @@ import {ArrowForwardIcon} from '@chakra-ui/icons'
 import { useSelector } from 'react-redux'
 
 function Display(props) {
-  // console.log("Display: " + props.optionsListArray)
-  // const listItems = props.optionsListArray.map((index) =>
-  //   <ListItem key={index} value={props.optionsListArray[index]} />
-  // )
+
   const options = useSelector(state => state)
   const optionsObject = [...Object.values(options), ...Object.keys(options)]
-  console.log(optionsObject[0])
+  // console.log(optionsObject[0])
 
   // console.log("Display: " + options.option[0].name)
-  const listItems = optionsObject[0].map((i) =>
+  const listItemsTopLeft = optionsObject[0].filter(effortType => effortType.effort === '12').map((i) =>
+    <ListItem key={i.index}>{i.name}</ListItem>
+  )
+  const listItemsTopRight = optionsObject[0].filter(effortType => effortType.effort === '22').map((i) =>
+    <ListItem key={i.index}>{i.name}</ListItem>
+  )
+  const listItemsBottomLeft = optionsObject[0].filter(effortType => effortType.effort === '11').map((i) =>
+    <ListItem key={i.index}>{i.name}</ListItem>
+  )
+  const listItemsBottomRight = optionsObject[0].filter(effortType => effortType.effort === '21').map((i) =>
     <ListItem key={i.index}>{i.name}</ListItem>
   )
   return (
@@ -29,28 +35,28 @@ function Display(props) {
           <Box bg="#ffff76">
             <Center p="10">
               <UnorderedList>
-                {listItems}
+                {listItemsTopLeft}
               </UnorderedList>
             </Center>
           </Box>
           <Box bg="#b4e0b4">
             <Center p="10">
               <UnorderedList>
-                {listItems}
+                {listItemsTopRight}
               </UnorderedList>
             </Center>
           </Box>
           <Box bg="#f1a8a8">
             <Center p="10">
               <UnorderedList>
-                {listItems}
+                {listItemsBottomLeft}
               </UnorderedList>
             </Center>
           </Box>
           <Box bg="#f3d89d">
             <Center p="10">
               <UnorderedList>
-                {listItems}
+                {listItemsBottomRight}
               </UnorderedList>
             </Center>
           </Box>
