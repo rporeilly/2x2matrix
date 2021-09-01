@@ -24,11 +24,8 @@ function Controls(props) {
           </TabPanel>
           <TabPanel>
             <Options
-              setEffort={props.setEffort}
-              effort={props.effort}
-              addOptions={props.addOptions}
-              optionName={props.optionName}
-              setOptionName={props.setOptionName}
+              optionsListArray={props.optionsListArray}
+              setOptionsListArray={props.setOptionsListArray}
               xAxis={props.xAxis}
               yAxis={props.yAxis}
             />

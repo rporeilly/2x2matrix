@@ -2,15 +2,18 @@ import {
   Button, HStack, Flex, Heading, Radio, RadioGroup, Stack, Input
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { useSelector, useDispatch} from 'react-redux'
 
 function Options(props) {
 
-  const [optionNameValue, setOptionNameValue] = useState()
+  const [optionNameValue, setOptionNameValue] = useState('')
   const [optionEffort1Value, setOptionEffort1Value] = useState()
   const [optionEffort2Value, setOptionEffort2Value] = useState()
 
+  const options = useSelector(state => state)
+  const dispatch = useDispatch()
+
   const optionName = (event) => {
-    // props.setOptionName(event.target.value)
     setOptionNameValue(event.target.value)
   }
 
@@ -23,25 +26,30 @@ function Options(props) {
   }
 
   let optionEffortValue = optionEffort1Value + optionEffort2Value
-  const optionValues = [
-    {
-      name: optionNameValue,
-      effort: optionEffortValue
-    }
-  ]
 
-  const [optionsArray, setOptionsArray] = useState([]);
+  const optionValues = {
+    name: optionNameValue,
+    effort: optionEffortValue
+  }
+
+  const optionNameObject = optionValues.name
+  const optionEffortObject = optionValues.effort
+
   const addEntryClick = () => {
-    setOptionsArray([...optionsArray, optionValues]);
-    // setOptionsArray(oldArray => [...oldArray, oldArray]);
+    //passing array back to App
+    props.setOptionsListArray([...props.optionsListArray, optionValues])
+    dispatch({type: "add_option", name: optionNameObject, effort: optionEffortObject})
+    setOptionNameValue('')
   };
 
+  let disabled = optionNameValue === '' || optionEffort1Value === '' || optionEffort2Value === '' ? true : false
 
-  console.log(optionsArray)
+  // console.log('Redux: ' + options.option[1].name)
+  // console.log('Option: ' + optionValues.name + optionValues.effort)
 
   return (
     <Flex direction="column">
-      <Input variant="flushed" onChange={optionName} placeholder="Option" />
+      <Input variant="flushed" onChange={optionName} value={optionNameValue} placeholder="Option" />
       <HStack spacing="24px">
         <Flex direction="column" w="100%">
           <Heading className="optionLable" size="xs" as="h3">{props.xAxis}</Heading>
@@ -62,7 +70,7 @@ function Options(props) {
           </RadioGroup>
         </Flex>
       </HStack>
-      <Button mt="20px" onClick={addEntryClick}>Add</Button>
+      <Button mt="20px" onClick={addEntryClick} disabled={disabled}>Add</Button>
     </Flex>
   );
 }

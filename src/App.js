@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import theme from './theme';
 import Controls from './components/Controls';
 import Display from './components/Display';
+import { useSelector, useDispatch } from "react-redux"
 
 function useStickyState(defaultValue, key) {
   const [value, setValue] = useState(() => {
@@ -24,7 +25,8 @@ function App() {
   const [xAxis, setXAxis] = useStickyState("", "xaxis");
   const [yAxis, setYAxis] = useStickyState("", "yaxis");
   const [matrixTitle, setMatrixTitle] = useStickyState("", "title");
-  const [optionsArray, setOptionsArray] = useStickyState("", "options");
+  // const [optionsListArray, setOptionsListArray] = useStickyState([], "options");
+  const [optionsListArray, setOptionsListArray] = useState([])
 
   const getXAxisValue = (event) => {
     setXAxis(event.target.value)
@@ -38,21 +40,13 @@ function App() {
     setMatrixTitle(event.target.value)
   }
 
-  const [effort, setEffort] = useStickyState("", "effort");
-  const [optionName, setOptionName] = useStickyState("", "optionName");
-
   const clearState = () => {
     setXAxis("")
     setYAxis("")
     setMatrixTitle("")
   }
 
-  const addOptionsClick = (options) => {
-    setOptionsArray([...optionsArray, options]);
-  }
-
-  console.log("Name: " + optionName + " Effort: " + effort)
-
+  // console.log(optionsListArray)
 
   return (
     <ChakraProvider theme={theme}>
@@ -69,17 +63,15 @@ function App() {
                 matrixTitle={matrixTitle}
                 yAxis={yAxis}
                 xAxis={xAxis}
-                effort={effort}
-                setEffort={setEffort}
-                optionName={optionName}
-                setOptionName={setOptionName}
-                addOptions={addOptionsClick}
+                optionsListArray={optionsListArray}
+                setOptionsListArray={setOptionsListArray}
               />
             </GridItem>
             <GridItem colSpan={4} p="5">
               <Display
                 XAxisValue={xAxis}
                 YAxisValue={yAxis}
+                optionsListArray={optionsListArray}
               />
             </GridItem>
           </Grid>

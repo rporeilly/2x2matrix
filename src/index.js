@@ -1,13 +1,19 @@
-import React, { StrictMode } from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Provider } from "react-redux"
+import { createStore } from "redux"
+import optionsReducer from "./reducers/optionsReducer"
+import React, { StrictMode } from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+import reportWebVitals from './reportWebVitals'
 
+const options = createStore(optionsReducer)
 
 ReactDOM.render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+  <Provider store={options}>
+    <StrictMode>
+      <App />
+    </StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 

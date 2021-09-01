@@ -1,9 +1,22 @@
 import {
-  Box, Center, SimpleGrid, Text
+  Box, Center, SimpleGrid, Text, ListItem, ListIcon, UnorderedList
 } from '@chakra-ui/react';
 import {ArrowForwardIcon} from '@chakra-ui/icons'
+import { useSelector } from 'react-redux'
 
 function Display(props) {
+  // console.log("Display: " + props.optionsListArray)
+  // const listItems = props.optionsListArray.map((index) =>
+  //   <ListItem key={index} value={props.optionsListArray[index]} />
+  // )
+  const options = useSelector(state => state)
+  const optionsObject = [...Object.values(options), ...Object.keys(options)]
+  console.log(optionsObject[0])
+
+  // console.log("Display: " + options.option[0].name)
+  const listItems = optionsObject[0].map((i) =>
+    <ListItem key={i.index}>{i.name}</ListItem>
+  )
   return (
     <Box position="relative">
       <Box transform="rotate(-90deg)" position="absolute" bottom="55px">
@@ -15,35 +28,30 @@ function Display(props) {
         <SimpleGrid columns={2} spacing={0}>
           <Box bg="#ffff76">
             <Center p="10">
-              <ul>
-                <li>Option 1</li>
-                <li>Option 2</li>
-                <li>Option 3</li>
-              </ul>
+              <UnorderedList>
+                {listItems}
+              </UnorderedList>
             </Center>
           </Box>
           <Box bg="#b4e0b4">
             <Center p="10">
-              <ul>
-                <li>Option 1</li>
-                <li>Option 2</li>
-              </ul>
+              <UnorderedList>
+                {listItems}
+              </UnorderedList>
             </Center>
           </Box>
           <Box bg="#f1a8a8">
             <Center p="10">
-              <ul>
-                <li>Option 1</li>
-              </ul>
+              <UnorderedList>
+                {listItems}
+              </UnorderedList>
             </Center>
           </Box>
           <Box bg="#f3d89d">
             <Center p="10">
-              <ul>
-                <li>Option 1</li>
-                <li>Option 2</li>
-                <li>Option 3</li>
-              </ul>
+              <UnorderedList>
+                {listItems}
+              </UnorderedList>
             </Center>
           </Box>
         </SimpleGrid>
