@@ -37,7 +37,7 @@ function Options(props) {
 
   const addEntryClick = () => {
     //passing array back to App
-    props.setOptionsListArray([...props.optionsListArray, optionValues])
+    // props.setOptionsListArray([...props.optionsListArray, optionValues])
     dispatch({type: "add_option", name: optionNameObject, effort: optionEffortObject})
     setOptionNameValue('')
   };

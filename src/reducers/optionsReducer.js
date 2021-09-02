@@ -1,7 +1,8 @@
+import reduxReset from 'redux-reset'
+
 const initialState = {
   option: []
 }
-
 function optionsReducer(state = initialState, action){
   switch (action.type){
     case "add_option":

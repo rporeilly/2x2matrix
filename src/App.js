@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import theme from './theme';
 import Controls from './components/Controls';
 import Display from './components/Display';
+import { useDispatch} from 'react-redux'
 
 function useStickyState(defaultValue, key) {
   const [value, setValue] = useState(() => {
@@ -20,7 +21,7 @@ function useStickyState(defaultValue, key) {
 }
 
 function App() {
-
+  const dispatch = useDispatch()
   const [xAxis, setXAxis] = useStickyState("", "xaxis");
   const [yAxis, setYAxis] = useStickyState("", "yaxis");
   const [matrixTitle, setMatrixTitle] = useStickyState("", "title");
@@ -43,6 +44,7 @@ function App() {
     setXAxis("")
     setYAxis("")
     setMatrixTitle("")
+    dispatch({type: 'RESET'})
   }
 
   // console.log(optionsListArray)

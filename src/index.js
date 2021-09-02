@@ -5,8 +5,15 @@ import React, { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import reduxReset from 'redux-reset'
+import compose from 'lodash/fp/compose';
 
-const options = createStore(optionsReducer)
+const enHanceCreateStore = compose(
+  reduxReset()
+)(createStore)
+const options = enHanceCreateStore(optionsReducer)
+
+// const options = createStore(optionsReducer)
 
 ReactDOM.render(
   <Provider store={options}>
