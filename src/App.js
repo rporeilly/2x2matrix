@@ -23,7 +23,11 @@ function useStickyState(defaultValue, key) {
 function App() {
   const dispatch = useDispatch()
   const [xAxis, setXAxis] = useStickyState("", "xaxis");
+  const [xAxisStart, setXAxisStart] = useStickyState("", "xaxisstart");
+  const [xAxisEnd, setXAxisEnd] = useStickyState("", "xaxisend");
   const [yAxis, setYAxis] = useStickyState("", "yaxis");
+  const [yAxisStart, setYAxisStart] = useStickyState("", "yaxisstart");
+  const [yAxisEnd, setYAxisEnd] = useStickyState("", "yaxisend");
   const [matrixTitle, setMatrixTitle] = useStickyState("", "title");
   // const [optionsListArray, setOptionsListArray] = useStickyState([], "options");
   const [optionsListArray, setOptionsListArray] = useState([])
@@ -32,8 +36,24 @@ function App() {
     setXAxis(event.target.value)
   }
 
+  const getXAxisValueStart = (event) => {
+    setXAxisStart(event.target.value)
+  }
+
+  const getXAxisValueEnd = (event) => {
+    setXAxisEnd(event.target.value)
+  }
+
   const getYAxisValue = (event) => {
     setYAxis(event.target.value)
+  }
+
+  const getYAxisValueStart = (event) => {
+    setYAxisStart(event.target.value)
+  }
+
+  const getYAxisValueEnd = (event) => {
+    setYAxisEnd(event.target.value)
   }
 
   const setTitle = (event) => {
@@ -42,11 +62,15 @@ function App() {
 
   const clearState = () => {
     setXAxis("")
+    setXAxisStart("")
+    setXAxisEnd("")
     setYAxis("")
+    setYAxisStart("")
+    setYAxisEnd("")
     setMatrixTitle("")
     dispatch({type: 'RESET'})
   }
-
+  console.log(xAxisStart)
   // console.log(optionsListArray)
 
   return (
@@ -57,13 +81,21 @@ function App() {
           <Grid templateColumns="repeat(6, 1fr)" gap={4}>
             <GridItem colSpan={2} p="5">
               <Controls
-                getX={getXAxisValue}
+                yAxis={yAxis}
                 getY={getYAxisValue}
+                yAxisStart={yAxisStart}
+                yAxisEnd={yAxisEnd}
+                getyAxisStart={getYAxisValueStart}
+                getyAxisEnd={getYAxisValueEnd}
+                xAxis={xAxis}
+                getX={getXAxisValue}
+                xAxisStart={xAxisStart}
+                xAxisEnd={xAxisEnd}
+                getxAxisStart={getXAxisValueStart}
+                getxAxisEnd={getXAxisValueEnd}
                 clearState={clearState}
                 setTitle={setTitle}
                 matrixTitle={matrixTitle}
-                yAxis={yAxis}
-                xAxis={xAxis}
                 optionsListArray={optionsListArray}
                 setOptionsListArray={setOptionsListArray}
               />

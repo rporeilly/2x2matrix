@@ -55,20 +55,19 @@ function Options(props) {
           <Heading className="optionLable" size="xs" as="h3">{props.xAxis}</Heading>
           <RadioGroup mt="10px">
             <Stack direction="row">
-              <Radio name="effort" onChange={optionEffort1} value="1">Low</Radio>
-              <Radio name="effort" onChange={optionEffort1} value="2">High</Radio>
+              <Radio w="30%" name="effort" onChange={optionEffort1} value="1">{props.xAxisStart}</Radio>
+              <Radio w="30%" name="effort" onChange={optionEffort1} value="2">{props.xAxisEnd}</Radio>
             </Stack>
           </RadioGroup>
-        </Flex>
-        <Flex direction="column" w="100%">
           <Heading className="optionLable" size="xs" as="h3">{props.yAxis}</Heading>
           <RadioGroup mt="10px">
             <Stack direction="row">
-              <Radio name="effort" onChange={optionEffort2} value="1">Low</Radio>
-              <Radio name="effort" onChange={optionEffort2} value="2">High</Radio>
+              <Radio w="30%" name="effort" onChange={optionEffort2} value="1">{props.yAxisStart}</Radio>
+              <Radio w="30%" name="effort" onChange={optionEffort2} value="2">{props.yAxisEnd}</Radio>
             </Stack>
           </RadioGroup>
         </Flex>
+
       </HStack>
       <Button mt="20px" onClick={addEntryClick} disabled={disabled}>Add</Button>
     </Flex>
