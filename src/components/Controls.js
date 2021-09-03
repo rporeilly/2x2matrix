@@ -20,7 +20,7 @@ function Controls(props) {
           </h2>
           <AccordionPanel pb={4}>
           <Stack spacing={5}>
-              <Text align="left">Enter setup configurations below to set up your 2x2 decision making matrix.</Text>
+              <Text align="left">Enter your configurations below to set up your 2x2 decision making matrix.</Text>
               <Input rounded="sm" variant="filled" onChange={props.setTitle} value={props.matrixTitle} placeholder="Title" />
               <Input rounded="sm" variant="filled" onChange={props.getX} value={props.xAxis} placeholder="X-axis" />
               <Flex>

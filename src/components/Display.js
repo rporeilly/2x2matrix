@@ -55,28 +55,28 @@ function Display(props) {
       </Box>
       <Box id="matrix" rounded="md" boxShadow="md">
         <SimpleGrid columns={2} spacing={0}>
-          <Box minH="200" bg="#ffff76">
+          <Box minH="200" bg="#227387" color="#fff">
             <Center p="10">
               <UnorderedList align="left">
                 {listItemsTopLeft}
               </UnorderedList>
             </Center>
           </Box>
-          <Box minH="200" bg="#b4e0b4">
+          <Box minH="200" bg="#0F4261" color="#fff">
             <Center p="10">
               <UnorderedList align="left">
                 {listItemsTopRight}
               </UnorderedList>
             </Center>
           </Box>
-          <Box minH="200" bg="#f1a8a8">
+          <Box minH="200" bg="#BBE1DE">
             <Center p="10">
               <UnorderedList align="left">
                 {listItemsBottomLeft}
               </UnorderedList>
             </Center>
           </Box>
-          <Box minH="200" bg="#f3d89d">
+          <Box minH="200" bg="#85AFAC">
             <Center p="10">
               <UnorderedList align="left">
                 {listItemsBottomRight}

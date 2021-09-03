@@ -81,8 +81,8 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl" >
-        <Box boxShadow="md" p="6" bg="white" rounded="md" minH="90vh" maxW="92%" m="5vh auto 0" className="wrapper">
-          <Heading as="h1">{matrixTitle ? matrixTitle : "Title"}</Heading>
+        <Heading as="h1" m="30px 0 -30px">{matrixTitle ? matrixTitle : "Title"}</Heading>
+        <Box boxShadow="md" p="6" bg="white" rounded="md" minH="50vh" maxW="1400px" m="5vh auto 0" className="wrapper">
           <Grid templateColumns="repeat(6, 1fr)" gap={10}>
             <GridItem colSpan={2} p="5">
               <Controls
