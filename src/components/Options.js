@@ -1,5 +1,5 @@
 import {
-  Button, HStack, Flex, Heading, Radio, RadioGroup, Stack, Input
+  Button, HStack, Flex, Heading, Radio, RadioGroup, Stack, Input, Text
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { useDispatch} from 'react-redux'
@@ -49,7 +49,8 @@ function Options(props) {
 
   return (
     <Flex direction="column">
-      <Input variant="flushed" onChange={optionName} value={optionNameValue} placeholder="Option" />
+      <Text align="left">Plot out your ideas here</Text>
+      <Input rounded="sm" mt="20px" variant="filled" onChange={optionName} value={optionNameValue} placeholder="Idea" />
       <HStack spacing="24px">
         <Flex direction="column" w="100%">
           <Heading className="optionLable" size="xs" as="h3">{props.xAxis}</Heading>

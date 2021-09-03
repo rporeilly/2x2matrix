@@ -5,13 +5,19 @@ import React, { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-import reduxReset from 'redux-reset'
-import compose from 'lodash/fp/compose';
+import { loadState, saveState } from './localStorage'
+import store from "./app/store"
 
-const enHanceCreateStore = compose(
-  reduxReset()
-)(createStore)
-const options = enHanceCreateStore(optionsReducer)
+const persistedState = loadState()
+
+const options = createStore(
+  optionsReducer,
+  persistedState
+)
+
+options.subscribe(() => {
+  saveState(options.getState())
+})
 
 // const options = createStore(optionsReducer)
 

@@ -1,5 +1,5 @@
 import {
-  Box, Center, SimpleGrid, Text, ListItem, ListIcon, UnorderedList
+  Box, Center, SimpleGrid, Text, ListItem, ListIcon, UnorderedList, Flex, Spacer
 } from '@chakra-ui/react';
 import {ArrowForwardIcon} from '@chakra-ui/icons'
 import { useSelector } from 'react-redux'
@@ -9,38 +9,51 @@ function Display(props) {
 
   const options = useSelector(state => state)
   const optionsObject = [...Object.values(options), ...Object.keys(options)]
-  // console.log(optionsObject[0])
+  // console.log(optionsObject)
   const fadeInSpeed = 0.5
 
-  // console.log("Display: " + options.option[0].name)
-  const listItemsTopLeft = optionsObject[0].filter(effortType => effortType.effort === '12').map((i) =>
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: fadeInSpeed }} >
-        <ListItem key={i.index}>{i.name}</ListItem>
-    </motion.div>
-  )
-  const listItemsTopRight = optionsObject[0].filter(effortType => effortType.effort === '22').map((i) =>
+  console.log("Display: " + options)
+
+  let listItemsTopLeft = optionsObject[0] ? optionsObject[0].filter(effortType => effortType.effort === '12').map((i) =>
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: fadeInSpeed }} >
       <ListItem key={i.index}>{i.name}</ListItem>
     </motion.div>
-  )
-  const listItemsBottomLeft = optionsObject[0].filter(effortType => effortType.effort === '11').map((i) =>
+  ) : null
+  let listItemsTopRight = optionsObject[0] ? optionsObject[0].filter(effortType => effortType.effort === '22').map((i) =>
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: fadeInSpeed }} >
       <ListItem key={i.index}>{i.name}</ListItem>
     </motion.div>
-  )
-  const listItemsBottomRight = optionsObject[0].filter(effortType => effortType.effort === '21').map((i) =>
+  ) : null
+  let listItemsBottomLeft = optionsObject[0] ? optionsObject[0].filter(effortType => effortType.effort === '11').map((i) =>
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: fadeInSpeed }} >
       <ListItem key={i.index}>{i.name}</ListItem>
     </motion.div>
-  )
+  ) : null
+  let listItemsBottomRight = optionsObject[0] ? optionsObject[0].filter(effortType => effortType.effort === '21').map((i) =>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: fadeInSpeed }} >
+      <ListItem key={i.index}>{i.name}</ListItem>
+    </motion.div>
+  ) : null
+
+  let matrixHeightInit = document.getElementById('matrix') !== null ? document.getElementById('matrix').clientHeight : null
+  props.setMatrixHeight(matrixHeightInit)
+
   return (
     <Box position="relative">
       <Box transform="rotate(-90deg)" position="absolute" bottom="55px">
-        <Text fontSize="1.25rem" position="fixed" top="-30px" w="250px" align="left" >{props.YAxisValue}
-          <ArrowForwardIcon position="absolute" top="5px" ml="10px"/>
-        </Text>
+        <Text position="absolute" top="-25px" left="-50px" w="250px" align="left">{props.yAxisStart}</Text>
+        <Text
+          fontWeight="bold"
+          fontSize="1.25rem"
+          position="absolute"
+          top="-60px"
+          left="-50px"
+          w={props.matrixHeight}
+          align="center"
+          borderBottom="1px solid lightgray" >{props.YAxisValue}</Text>
+        <Text position="absolute" top="-25px" right={-props.matrixHeight + 50}>{props.yAxisEnd}</Text>
       </Box>
-      <Box rounded="md" boxShadow="md">
+      <Box id="matrix" rounded="md" boxShadow="md">
         <SimpleGrid columns={2} spacing={0}>
           <Box minH="200" bg="#ffff76">
             <Center p="10">
@@ -72,9 +85,20 @@ function Display(props) {
           </Box>
         </SimpleGrid>
       </Box>
-      <Text fontSize="1.25rem" align="left" ml="20px">{props.XAxisValue}
-        <ArrowForwardIcon ml="10px"/>
-      </Text>
+      <Box position="absolute" w="100%">
+        <Flex w="100%" justify="space-between">
+          <Text align="left" mt="3px">{props.xAxisStart}</Text>
+          <Text
+            fontWeight="bold"
+            fontSize="1.25rem"
+            align="center"
+            position="absolute"
+            top="25px"
+            w="100%"
+            borderTop="1px solid lightgray">{props.XAxisValue}</Text>
+          <Text align="left" mt="3px">{props.xAxisEnd}</Text>
+        </Flex>
+      </Box>
     </Box>
   );
 }

@@ -31,6 +31,7 @@ function App() {
   const [matrixTitle, setMatrixTitle] = useStickyState("", "title");
   // const [optionsListArray, setOptionsListArray] = useStickyState([], "options");
   const [optionsListArray, setOptionsListArray] = useState([])
+  const [matrixHeight, setMatrixHeight] = useState("400", "matrixheight")
 
   const getXAxisValue = (event) => {
     setXAxis(event.target.value)
@@ -60,6 +61,10 @@ function App() {
     setMatrixTitle(event.target.value)
   }
 
+  const getMatrixHeight = (height) => {
+    setMatrixHeight(height)
+  }
+
   const clearState = () => {
     setXAxis("")
     setXAxisStart("")
@@ -68,9 +73,9 @@ function App() {
     setYAxisStart("")
     setYAxisEnd("")
     setMatrixTitle("")
-    dispatch({type: 'RESET'})
+    dispatch({type: 'clear_options'})
   }
-  console.log(xAxisStart)
+  // console.log(xAxisStart)
   // console.log(optionsListArray)
 
   return (
@@ -78,7 +83,7 @@ function App() {
       <Box textAlign="center" fontSize="xl" >
         <Box boxShadow="md" p="6" bg="white" rounded="md" minH="90vh" maxW="92%" m="5vh auto 0" className="wrapper">
           <Heading as="h1">{matrixTitle ? matrixTitle : "Title"}</Heading>
-          <Grid templateColumns="repeat(6, 1fr)" gap={4}>
+          <Grid templateColumns="repeat(6, 1fr)" gap={10}>
             <GridItem colSpan={2} p="5">
               <Controls
                 yAxis={yAxis}
@@ -105,6 +110,12 @@ function App() {
                 XAxisValue={xAxis}
                 YAxisValue={yAxis}
                 optionsListArray={optionsListArray}
+                xAxisStart={xAxisStart}
+                xAxisEnd={xAxisEnd}
+                yAxisStart={yAxisStart}
+                yAxisEnd={yAxisEnd}
+                matrixHeight={matrixHeight}
+                setMatrixHeight={getMatrixHeight}
               />
             </GridItem>
           </Grid>
