@@ -12,7 +12,7 @@ function Display(props) {
   // console.log(optionsObject)
   const fadeInSpeed = 0.5
 
-  console.log("Display: " + options)
+  // console.log("Display: " + options)
 
   let listItemsTopLeft = optionsObject[0] ? optionsObject[0].filter(effortType => effortType.effort === '12').map((i) =>
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: fadeInSpeed }} >
@@ -95,7 +95,8 @@ function Display(props) {
             position="absolute"
             top="25px"
             w="100%"
-            borderTop="1px solid lightgray">{props.XAxisValue}</Text>
+            borderTop="1px solid lightgray"
+            pb="20px">{props.XAxisValue}</Text>
           <Text align="left" mt="3px">{props.xAxisEnd}</Text>
         </Flex>
       </Box>

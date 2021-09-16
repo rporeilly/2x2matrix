@@ -6,7 +6,6 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { loadState, saveState } from './localStorage'
-import store from "./app/store"
 
 const persistedState = loadState()
 
