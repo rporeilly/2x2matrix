@@ -1,6 +1,9 @@
-# Getting Started with Create React App
+# 2x2 Decision Matrix Tool
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Use this tool to set up a matrix with decision criterion represented by each axis. Then plot your ideas based on the defined axis points.
+View working demo [here](https://kind-shirley-8a290f.netlify.app/).
+
+Matrix configurations are stored in local storage for persistence.
 
 ## Available Scripts
 
